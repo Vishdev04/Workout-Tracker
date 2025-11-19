@@ -1,1 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPL Workout Form & Video Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+        }
+        .section-header {
+            background-color: #161b22;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .section-header:hover {
+            background-color: #21262d;
+        }
+        .exercise-card {
+            border-left: 4px solid #38a169;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exercise-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6">
+
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold text-center mb-6 text-green-400">PPL Workout Guide & Tracker</h1>
+        <p class="text-center text-sm mb-8 text-gray-400">31 essential exercises with quick form cues and video links to keep your workouts efficient and effective.</p>
+
+        <div id="routine-container">
+            <!-- Data will be populated here -->
+        </div>
+
+        <div class="mt-12 text-center text-gray-500 text-sm">
+            <p>&copy; 2025 Workout Companion. Lift Heavy, Stay Safe.</p>
+        </div>
+    </div>
+
+    <script>
+        // Define all exercises, cues, and video links
+        const exerciseData = [
+            // --- DAY 1 ---
+            { day: "PUSH Day 1", name: "Incline Dumbbell Press", cue: "Chest Up, Shoulders Back. Press slightly inward and focus on driving the dumbbells up and together, feeling the contraction primarily in your upper chest. Keep your shoulder blades pinned on the bench.", link: "https://www.youtube.com/watch?v=kYv-b8uC_oA" },
+            { day: "PUSH Day 1", name: "Pec Deck Fly Machine", cue: "Protracted Shoulders. Start with a slight internal rotation of the shoulders. Think about bringing your biceps together, not just the handles. Squeeze hard for a 1-second count in the middle.", link: "https://www.youtube.com/watch?v=F0f-d6S860Y" },
+            { day: "PUSH Day 1", name: "Seated Dumbbell Shoulder Press", cue: "Slight Incline. Set the bench one notch back from 90 degrees. Keep your core braced and don't let your back arch excessively. Press up without locking out your elbows fully.", link: "https://www.youtube.com/watch?v=B9QoX7D3D20" },
+            { day: "PUSH Day 1", name: "Dumbbell Lateral Raises", cue: "\"Pour the Water.\" Lead with your elbows and maintain a slight bend. Stop when your arms are parallel to the floor, tilting your pinkies up slightly as if pouring water out of a jug.", link: "https://www.youtube.com/watch?v=3VcKaXSU35I" },
+            { day: "PUSH Day 1", name: "Cable Tricep Pushdowns", cue: "Pin the Elbows. Keep your elbows fixed at your sides. The only movement should be at the elbow joint. Press the bar down and slightly out to fully extend the tricep.", link: "https://www.youtube.com/watch?v=n-Wz_o7G-2o" },
+
+            { day: "PULL Day 1", name: "Lat Pulldown Machine (Wide Grip)", cue: "Lean Back, Lead with Elbows. Lean back slightly (10-15 degrees). Pull the bar down toward your upper chest, focusing on driving your elbows toward your hips. Squeeze your lats.", link: "https://www.youtube.com/watch?v=C7G-N45d1tM" },
+            { day: "PULL Day 1", name: "Seated Cable Row (Wide Grip)", cue: "Maintain Posture. Keep your chest up and back straight. Initiate the pull by retracting your shoulder blades, then follow through by driving your elbows back.", link: "https://www.youtube.com/watch?v=dY8bX8b8lU0" },
+            { day: "PULL Day 1", name: "Straight-Arm Pulldowns (Cable)", cue: "Hinge at Hips, Locked Arms. Stand a couple of feet back and hinge slightly at the hips. Keep your arms straight and pull the bar down using only your lats until it touches your thighs.", link: "https://www.youtube.com/watch?v=H7m-N-S2HqQ" },
+            { day: "PULL Day 1", name: "Dumbbell Bicep Curls", cue: "Controlled Contraction. Stand tall with elbows pinned. Supinate (turn palms up) slightly as you curl up. Slowly lower the weight for maximum time under tension.", link: "https://www.youtube.com/watch?v=D-P3WfL4u40" },
+            { day: "PULL Day 1", name: "Dumbbell Shrugs", cue: "Straight Up and Down. Shrug your shoulders straight up toward your ears. Avoid rolling your shoulders. Hold for a peak contraction at the top.", link: "https://www.youtube.com/watch?v=8L6zjxBwVzM&vl=en" },
+            { day: "PULL Day 1", name: "Face Pulls (Cable)", cue: "Pull to Forehead/Ears. Use a rope attachment set high. Pull the rope towards your face, focusing on externally rotating your shoulders and squeezing your rear delts and upper back.", link: "https://www.youtube.com/watch?v=03irpA4veHM" },
+
+            { day: "LEG Day 1", name: "Leg Press Machine", cue: "Safe Depth. Feet shoulder-width apart, mid-foot placement (quad-focused). Lower the platform until your knees are near your chest, but STOP before your lower back lifts off the pad.", link: "https://www.youtube.com/watch?v=Aq5uxXrXq7c" },
+            { day: "LEG Day 1", name: "Hack Squat Machine", cue: "Knees Out. Position feet slightly lower on the platform for quad focus. Keep your head, back, and hips pressed against the pads. Drive your knees slightly outward as you descend.", link: "https://www.youtube.com/watch?v=0tn5K9NlCfo" },
+            { day: "LEG Day 1", name: "Leg Extension Machine", cue: "Full Quad Flexion. Adjust the pad so it rests on your shins/ankles. Fully extend your legs, squeezing your quads hard at the top (1-second hold), and slowly resist the weight on the way down.", link: "https://www.youtube.com/watch?v=2lvdnQg04PM" },
+            { day: "LEG Day 1", name: "Lying Hamstring Curl Machine", cue: "Hips Down. Keep your hips pressed firmly against the bench. Curl the weight by driving your heels toward your glutes. Control the weight and slowly return to the starting position.", link: "https://www.youtube.com/watch?v=NlZeAGZ_YJw" },
+            { day: "LEG Day 1", name: "Standing Calf Raises Machine", cue: "Full Stretch, Peak Contraction. Lower your heels as far as comfortable for a deep stretch. Then, drive up onto the balls of your feet for a maximum peak contraction.", link: "https://www.youtube.com/watch?v=VIUg0nNw5BE" },
+
+            // --- DAY 2 ---
+            { day: "PUSH Day 2", name: "Flat Dumbbell Press", cue: "Arch and Retract. Maintain a slight arch in your lower back and keep your shoulder blades squeezed together. Lower the dumbbells until they align with your mid-chest.", link: "https://www.youtube.com/watch?v=r0_tF926e84" },
+            { day: "PUSH Day 2", name: "Cable Crossover (High to Low)", cue: "Soft Bend. Use a slight bend in your elbows that you maintain throughout the movement. Focus on sweeping your hands inward and together, squeezing your inner chest.", link: "https://www.youtube.com/watch?v=Iwe6h7K36Wk" },
+            { day: "PUSH Day 2", name: "Overhead Dumbbell Tricep Extension", cue: "Tuck Elbows. Hold one dumbbell vertically with both hands. Keep your upper arms locked close to your head. Lower the weight behind you for a deep stretch, then extend.", link: "https://www.youtube.com/watch?v=b_r_LW4HEcM" },
+            { day: "PUSH Day 2", name: "Seated Dumbbell Lateral Raises", cue: "Eliminate Momentum. Sitting down prevents using your legs or hips. Focus purely on isolating the side delts, following the \"pouring water\" cue.", link: "https://www.youtube.com/watch?v=3VcKaXSU35I" },
+            { day: "PUSH Day 2", name: "Reverse Pec Dec Fly", cue: "No Momentum. Keep a slight bend in your arms. Pull the handles back by squeezing your rear delts and upper back. Pause at the peak contraction before returning slowly.", link: "https://www.youtube.com/watch?v=R63UajjKfnM" },
+
+            { day: "PULL Day 2", name: "Barbell Rows", cue: "Hinge and Brace. Hinge at the hips until your torso is near parallel to the floor (or slightly higher). Pull the bar towards your belly button or upper abdomen, squeezing your back muscles.", link: "https://www.youtube.com/watch?v=g3uR8k_i1pM" },
+            { day: "PULL Day 2", name: "Single-Arm Dumbbell Rows", cue: "Max Stretch. Support one hand and knee on a bench. Let the dumbbell hang for a full stretch. Pull the dumbbell towards your hip, driving your elbow high and back.", link: "https://www.youtube.com/watch?v=pYcpY20QaE4" },
+            { day: "PULL Day 2", name: "Barbell Curls", cue: "Elbows Pinned. Use a shoulder-width grip. Keep your elbows fixed. Curl the bar up, contracting the biceps fully. Avoid rocking your torso.", link: "https://www.youtube.com/watch?v=JJB8XgKltA8" },
+            { day: "PULL Day 2", name: "Hammer Curls", cue: "Neutral Grip. Hold dumbbells with palms facing your torso. Curl the weights up, focusing on the brachialis and brachioradialis (forearms/outer biceps). Maintain control.", link: "https://www.youtube.com/watch?v=CFBZ4jN1CMI" },
+            { day: "PULL Day 2", name: "Cable Tricep Extensions (Rope)", cue: "Split and Extend. At the bottom of the movement, split the rope apart and hold the contraction for a moment to emphasize the lateral head of the tricep.", link: "https://www.youtube.com/watch?v=QLI40pQ6O74" },
+
+            { day: "LEG Day 2", name: "Romanian Deadlift (RDL)", cue: "Hip Hinge, Straight Back. Keep a slight bend in your knees. Push your hips back as far as possible, keeping the bar close to your shins and your back perfectly straight. Stop when you feel a deep stretch in the hamstrings.", link: "https://www.youtube.com/watch?v=FUwsp0OVyVM" },
+            { day: "LEG Day 2", name: "Seated Calf Raises Machine", cue: "Soleus Focus. This variation focuses on the deeper soleus muscle. Ensure you get a full stretch and peak contraction with a controlled tempo.", link: "https://www.youtube.com/watch?v=_LxQH4o7COk" },
+            { day: "LEG Day 2", name: "Hip Adduction Machine", cue: "Leaning Forward. Sit upright or lean slightly forward for a greater range of motion. Squeeze your inner thighs together, controlling the return movement.", link: "https://www.youtube.com/watch?v=yucB1Zxw6-c" },
+            { day: "LEG Day 2", name: "Hip Abduction Machine", cue: "Lean Back. Sit upright or lean slightly back to target the glutes more effectively. Drive your knees apart, using the outside of your hips.", link: "https://www.youtube.com/watch?v=OjI5OpV6IWA" },
+
+            // --- CORE & ACCESSORIES ---
+            { day: "Core & Accessories", name: "Cable Ab Crunches", cue: "Crunch Down, Not Pull Down. Kneel, holding the rope behind your head. Crunch your ribcage toward your hips, using your abs to pull the weight, not your arms.", link: "https://www.youtube.com/watch?v=3qjoXDTuyOE" },
+            { day: "Core & Accessories", name: "Hanging Leg Raises", cue: "Control the Swing. Use straps if needed. Focus on tilting your pelvis up (posterior pelvic tilt) to engage the abs. Raise legs slowly and avoid swinging the body.", link: "https://www.youtube.com/watch?v=Nw0LOKe3_l8" },
+        ];
+
+        const container = document.getElementById('routine-container');
+
+        // Group exercises by day
+        const routineByDay = exerciseData.reduce((acc, exercise) => {
+            if (!acc[exercise.day]) {
+                acc[exercise.day] = [];
+            }
+            acc[exercise.day].push(exercise);
+            return acc;
+        }, {});
+
+        // Render sections
+        for (const day in routineByDay) {
+            const exercises = routineByDay[day];
+            const sectionId = day.replace(/ /g, '-');
+            
+            const dayHtml = `
+                <div class="mb-6 rounded-xl overflow-hidden shadow-lg bg-gray-800">
+                    <div id="${sectionId}-header" class="section-header p-4 flex justify-between items-center rounded-t-xl" onclick="toggleSection('${sectionId}-content')">
+                        <h2 class="text-xl font-semibold text-green-300">${day} (${exercises.length} Exercises)</h2>
+                        <svg id="${sectionId}-icon" class="w-6 h-6 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div id="${sectionId}-content" class="section-content hidden p-4 space-y-4">
+                        ${exercises.map(ex => `
+                            <div class="exercise-card p-3 rounded-lg shadow-md bg-gray-900">
+                                <h3 class="text-lg font-bold text-gray-50">${ex.name}</h3>
+                                <p class="text-sm italic mt-1 text-gray-400">Cue: ${ex.cue}</p>
+                                <a href="${ex.link}" target="_blank" class="mt-2 inline-flex items-center text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.26a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    Watch Video Tutorial
+                                </a>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            container.innerHTML += dayHtml;
+        }
+
+        // Toggle function for collapsible sections
+        function toggleSection(contentId) {
+            const content = document.getElementById(contentId);
+            const iconId = contentId.replace('-content', '-icon');
+            const icon = document.getElementById(iconId);
+
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+    </script>
+</body>
+</html>
+
 
