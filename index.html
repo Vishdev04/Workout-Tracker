@@ -1,151 +1,553 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PPL Workout Form & Video Guide</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0d1117;
-            color: #c9d1d9;
-        }
-        .section-header {
-            background-color: #161b22;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        .section-header:hover {
-            background-color: #21262d;
-        }
-        .exercise-card {
-            border-left: 4px solid #38a169;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .exercise-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-        }
+      :root {
+        --bs-body-bg: #0d1117;
+        --bs-body-color: #c9d1d9;
+        --bs-border-color: #30363d;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #0d1117;
+        color: #c9d1d9;
+      }
+
+      .section-header {
+        background-color: #161b22;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .section-header:hover {
+        background-color: #21262d;
+      }
+
+      .section-content {
+        background-color: #2a2e35;
+      }
+
+      .card {
+        background-color: #0d1117;
+        border-color: #30363d;
+        border-left: 4px solid #28a745;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2),
+          0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-title {
+        color: #f0f6fc;
+      }
+
+      .card-text {
+        color: #8b949e;
+      }
+
+      /* Loader Styles */
+      .loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(13, 17, 23, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.3s ease;
+      }
+
+      .loader.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .spinner {
+        width: 50px;
+        height: 50px;
+        border: 4px solid #30363d;
+        border-top: 4px solid #28a745;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      .card-img-top {
+        background: linear-gradient(90deg, #1f2937 25%, #374151 50%, #1f2937 75%);
+        background-size: 200% 100%;
+        animation: shimmer 2s infinite;
+      }
+
+      .card-img-top.loading {
+        animation: shimmer 2s infinite;
+      }
+
+      @keyframes shimmer {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+      }
     </style>
-</head>
-<body class="p-4 sm:p-6">
+  </head>
 
-    <div class="max-w-4xl mx-auto">
-        <h1 class="text-3xl font-bold text-center mb-6 text-green-400">PPL Workout Guide & Tracker</h1>
-        <p class="text-center text-sm mb-8 text-gray-400">31 essential exercises with quick form cues and video links to keep your workouts efficient and effective.</p>
+  <body class="p-3 p-md-4">
+    <!-- Loader -->
+    <div id="loader" class="loader">
+      <div class="spinner"></div>
+    </div>
 
-        <div id="routine-container">
-            <!-- Data will be populated here -->
-        </div>
+    <div class="container" style="max-width: 900px">
+      <h1 class="text-3xl fw-bold text-center mb-4" style="color: #28a745">
+        PPL Workout Guide & Tracker
+      </h1>
+      <p class="text-center text-sm mb-5" style="color: #8b949e">
+        31 essential exercises with quick form cues and video links to keep your
+        workouts efficient and effective.
+      </p>
 
-        <div class="mt-12 text-center text-gray-500 text-sm">
-            <p>&copy; 2025 Workout Companion. Lift Heavy, Stay Safe.</p>
-        </div>
+      <div id="routine-container">
+        <!-- Data will be populated here -->
+      </div>
+
+      <div class="mt-5 text-center text-sm" style="color: #6e7681">
+        <p>&copy; 2025 Workout Companion. Lift Heavy, Stay Safe.</p>
+      </div>
     </div>
 
     <script>
-        // Define all exercises, cues, and video links
-        const exerciseData = [
-            // --- DAY 1 ---
-            { day: "PUSH Day 1", name: "Incline Dumbbell Press", cue: "Chest Up, Shoulders Back. Press slightly inward and focus on driving the dumbbells up and together, feeling the contraction primarily in your upper chest. Keep your shoulder blades pinned on the bench.", link: "https://www.youtube.com/watch?v=kYv-b8uC_oA" },
-            { day: "PUSH Day 1", name: "Pec Deck Fly Machine", cue: "Protracted Shoulders. Start with a slight internal rotation of the shoulders. Think about bringing your biceps together, not just the handles. Squeeze hard for a 1-second count in the middle.", link: "https://www.youtube.com/watch?v=F0f-d6S860Y" },
-            { day: "PUSH Day 1", name: "Seated Dumbbell Shoulder Press", cue: "Slight Incline. Set the bench one notch back from 90 degrees. Keep your core braced and don't let your back arch excessively. Press up without locking out your elbows fully.", link: "https://www.youtube.com/watch?v=B9QoX7D3D20" },
-            { day: "PUSH Day 1", name: "Dumbbell Lateral Raises", cue: "\"Pour the Water.\" Lead with your elbows and maintain a slight bend. Stop when your arms are parallel to the floor, tilting your pinkies up slightly as if pouring water out of a jug.", link: "https://www.youtube.com/watch?v=3VcKaXSU35I" },
-            { day: "PUSH Day 1", name: "Cable Tricep Pushdowns", cue: "Pin the Elbows. Keep your elbows fixed at your sides. The only movement should be at the elbow joint. Press the bar down and slightly out to fully extend the tricep.", link: "https://www.youtube.com/watch?v=n-Wz_o7G-2o" },
+      // Show loader on page load
+      window.addEventListener('load', function() {
+        const loader = document.getElementById('loader');
+        setTimeout(() => {
+          loader.classList.add('hidden');
+        }, 500);
+      });
 
-            { day: "PULL Day 1", name: "Lat Pulldown Machine (Wide Grip)", cue: "Lean Back, Lead with Elbows. Lean back slightly (10-15 degrees). Pull the bar down toward your upper chest, focusing on driving your elbows toward your hips. Squeeze your lats.", link: "https://www.youtube.com/watch?v=C7G-N45d1tM" },
-            { day: "PULL Day 1", name: "Seated Cable Row (Wide Grip)", cue: "Maintain Posture. Keep your chest up and back straight. Initiate the pull by retracting your shoulder blades, then follow through by driving your elbows back.", link: "https://www.youtube.com/watch?v=dY8bX8b8lU0" },
-            { day: "PULL Day 1", name: "Straight-Arm Pulldowns (Cable)", cue: "Hinge at Hips, Locked Arms. Stand a couple of feet back and hinge slightly at the hips. Keep your arms straight and pull the bar down using only your lats until it touches your thighs.", link: "https://www.youtube.com/watch?v=H7m-N-S2HqQ" },
-            { day: "PULL Day 1", name: "Dumbbell Bicep Curls", cue: "Controlled Contraction. Stand tall with elbows pinned. Supinate (turn palms up) slightly as you curl up. Slowly lower the weight for maximum time under tension.", link: "https://www.youtube.com/watch?v=D-P3WfL4u40" },
-            { day: "PULL Day 1", name: "Dumbbell Shrugs", cue: "Straight Up and Down. Shrug your shoulders straight up toward your ears. Avoid rolling your shoulders. Hold for a peak contraction at the top.", link: "https://www.youtube.com/watch?v=8L6zjxBwVzM&vl=en" },
-            { day: "PULL Day 1", name: "Face Pulls (Cable)", cue: "Pull to Forehead/Ears. Use a rope attachment set high. Pull the rope towards your face, focusing on externally rotating your shoulders and squeezing your rear delts and upper back.", link: "https://www.youtube.com/watch?v=03irpA4veHM" },
+      // Define all exercises, cues, and video links
+      const exerciseData = [
+        // --- DAY 1 ---
+        {
+          day: "PUSH Day 1",
+          name: "Incline Dumbbell Press",
+          cue: "Chest Up, Shoulders Back. Press slightly inward and focus on driving the dumbbells up and together, feeling the contraction primarily in your upper chest. Keep your shoulder blades pinned on the bench.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/DB_INC_BP.gif",
+        },
+        {
+          day: "PUSH Day 1",
+          name: "Seated Dumbbell Shoulder Press",
+          cue: "Slight Incline. Set the bench one notch back from 90 degrees. Keep your core braced and don't let your back arch excessively. Press up without locking out your elbows fully.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/SEAT_DB_SHD_PRESS.gif",
+        },
+        {
+          day: "PUSH Day 1",
+          name: "Pec Deck Fly Machine",
+          cue: "Protracted Shoulders. Start with a slight internal rotation of the shoulders. Think about bringing your biceps together, not just the handles. Squeeze hard for a 1-second count in the middle.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/PEC_DECK_MC.gif",
+        },
+        {
+          day: "PUSH Day 1",
+          name: "Dumbbell Lateral Raises",
+          cue: '"Pour the Water." Lead with your elbows and maintain a slight bend. Stop when your arms are parallel to the floor, tilting your pinkies up slightly as if pouring water out of a jug.',
+          gif: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lateral-Raise.gif",
+        },
+        {
+          day: "PUSH Day 1",
+          name: "Cable Tricep Pushdowns (Rope)",
+          cue: "Elbows Tucked. Keep your elbows close to your sides throughout the movement. Focus on pushing down through your triceps, spreading the rope apart at the bottom for maximum contraction.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/CABLE_PUSH_DOWN.gif",
+        },
+        {
+          day: "PUSH Day 1",
+          name: "Chest Press Machine",
+          cue: "Controlled Tempo. Use a moderate weight that allows you to control both the concentric and eccentric phases. Focus on squeezing your chest at the top of the movement.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/CHEST_PRESS_MC.gif",
+          optional: true,
+        },
+        {
+          day: "PUSH Day 1",
+          name: "Cable Crossover (High to Low)",
+          cue: "Soft Bend. Use a slight bend in your elbows that you maintain throughout the movement. Focus on sweeping your hands inward and together, squeezing your inner chest.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/CROSS_OVER.gif",
+          optional: true,
+        },
 
-            { day: "LEG Day 1", name: "Leg Press Machine", cue: "Safe Depth. Feet shoulder-width apart, mid-foot placement (quad-focused). Lower the platform until your knees are near your chest, but STOP before your lower back lifts off the pad.", link: "https://www.youtube.com/watch?v=Aq5uxXrXq7c" },
-            { day: "LEG Day 1", name: "Hack Squat Machine", cue: "Knees Out. Position feet slightly lower on the platform for quad focus. Keep your head, back, and hips pressed against the pads. Drive your knees slightly outward as you descend.", link: "https://www.youtube.com/watch?v=0tn5K9NlCfo" },
-            { day: "LEG Day 1", name: "Leg Extension Machine", cue: "Full Quad Flexion. Adjust the pad so it rests on your shins/ankles. Fully extend your legs, squeezing your quads hard at the top (1-second hold), and slowly resist the weight on the way down.", link: "https://www.youtube.com/watch?v=2lvdnQg04PM" },
-            { day: "LEG Day 1", name: "Lying Hamstring Curl Machine", cue: "Hips Down. Keep your hips pressed firmly against the bench. Curl the weight by driving your heels toward your glutes. Control the weight and slowly return to the starting position.", link: "https://www.youtube.com/watch?v=NlZeAGZ_YJw" },
-            { day: "LEG Day 1", name: "Standing Calf Raises Machine", cue: "Full Stretch, Peak Contraction. Lower your heels as far as comfortable for a deep stretch. Then, drive up onto the balls of your feet for a maximum peak contraction.", link: "https://www.youtube.com/watch?v=VIUg0nNw5BE" },
+        {
+          day: "PULL Day 1",
+          name: "Lat Pulldown Machine (Wide Grip)",
+          cue: "Lean Back, Lead with Elbows. Lean back slightly (10-15 degrees). Pull the bar down toward your upper chest, focusing on driving your elbows toward your hips. Squeeze your lats.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/LAT_PULL_DOWN.gif",
+        },
+        {
+          day: "PULL Day 1",
+          name: "Row machine (Seated Cable Rows)",
+          cue: "Chest Up, Squeeze Shoulder Blades. Keep your chest up and shoulders back. Pull the handle towards your lower ribs, squeezing your shoulder blades together at the end of the movement.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/MC_LOW.gif",
+        },
+        {
+          day: "PULL Day 1",
+          name: "Straight-Arm Pulldowns (Cable)",
+          cue: "Hinge at Hips, Locked Arms. Stand a couple of feet back and hinge slightly at the hips. Keep your arms straight and pull the bar down using only your lats until it touches your thighs.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/CABLE_ARM_PULL_DOWN.gif",
+        },
+        {
+          day: "PULL Day 1",
+          name: "Face Pulls (Cable)",
+          cue: "Pull to Forehead/Ears. Use a rope attachment set high. Pull the rope towards your face, focusing on externally rotating your shoulders and squeezing your rear delts and upper back.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/FACE_PULL.gif",
+        },
+        {
+          day: "PULL Day 1",
+          name: "Dumbbell Bicep Curls",
+          cue: "Controlled Contraction. Stand tall with elbows pinned. Supinate (turn palms up) slightly as you curl up. Slowly lower the weight for maximum time under tension.",
+          gif: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Curl.gif",
+        },
+        {
+          day: "PULL Day 1",
+          name: "Dumbbell Shrugs",
+          cue: "Straight Up and Down. Shrug your shoulders straight up toward your ears. Avoid rolling your shoulders. Hold for a peak contraction at the top.",
+          gif: "https://fitnessprogramer.com/wp-content/uploads/2021/04/Dumbbell-Shrug.gif",
+        },
+        {
+          day: "PULL Day 1",
+          name: "Preacher Curls (EZ Bar/DBs)",
+          cue: "Elbows Forward. Keep your elbows pointed forward and avoid letting them flare out. Curl the weight up, squeezing the biceps at the top, and lower slowly for maximum tension.",
+          gif: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Z-Bar-Preacher-Curl.gif",
+          optional: true,
+        },
+        {
+          day: "PULL Day 1",
+          name: "Seated Cable Rows (Close Grip)",
+          cue: "Close Grip, Chest Up. Use a close grip handle. Keep your chest up and shoulders back. Pull the handle towards your abdomen, squeezing your shoulder blades together at the end of the movement.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/SEATED_CABLE_ROW.gif",
+          optional: true,
+        },
 
-            // --- DAY 2 ---
-            { day: "PUSH Day 2", name: "Flat Dumbbell Press", cue: "Arch and Retract. Maintain a slight arch in your lower back and keep your shoulder blades squeezed together. Lower the dumbbells until they align with your mid-chest.", link: "https://www.youtube.com/watch?v=r0_tF926e84" },
-            { day: "PUSH Day 2", name: "Cable Crossover (High to Low)", cue: "Soft Bend. Use a slight bend in your elbows that you maintain throughout the movement. Focus on sweeping your hands inward and together, squeezing your inner chest.", link: "https://www.youtube.com/watch?v=Iwe6h7K36Wk" },
-            { day: "PUSH Day 2", name: "Overhead Dumbbell Tricep Extension", cue: "Tuck Elbows. Hold one dumbbell vertically with both hands. Keep your upper arms locked close to your head. Lower the weight behind you for a deep stretch, then extend.", link: "https://www.youtube.com/watch?v=b_r_LW4HEcM" },
-            { day: "PUSH Day 2", name: "Seated Dumbbell Lateral Raises", cue: "Eliminate Momentum. Sitting down prevents using your legs or hips. Focus purely on isolating the side delts, following the \"pouring water\" cue.", link: "https://www.youtube.com/watch?v=3VcKaXSU35I" },
-            { day: "PUSH Day 2", name: "Reverse Pec Dec Fly", cue: "No Momentum. Keep a slight bend in your arms. Pull the handles back by squeezing your rear delts and upper back. Pause at the peak contraction before returning slowly.", link: "https://www.youtube.com/watch?v=R63UajjKfnM" },
+        {
+          day: "LEG Day 1",
+          name: "Hack Squat Machine",
+          cue: "Knees Out. Position feet slightly lower on the platform for quad focus. Keep your head, back, and hips pressed against the pads. Drive your knees slightly outward as you descend.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/HACK_SQT.gif",
+        },
+        {
+          day: "LEG Day 1",
+          name: "Leg Press Machine",
+          cue: "Safe Depth. Feet shoulder-width apart, mid-foot placement (quad-focused). Lower the platform until your knees are near your chest, but STOP before your lower back lifts off the pad.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/LEG_PRESS.gif",
+        },
+        {
+          day: "LEG Day 1",
+          name: "Seated Hamstring Curl Machine",
+          cue: "Full Range of Motion. Adjust the pad to rest just above your heels. Curl the weight down fully, squeezing your hamstrings at the bottom, and control the return for maximum tension.",
+          gif: "https://fitnessprogramer.com/wp-content/uploads/2021/08/Seated-Leg-Curl.gif",
+        },
+        {
+          day: "LEG Day 1",
+          name: "Leg Extension Machine",
+          cue: "Full Quad Flexion. Adjust the pad so it rests on your shins/ankles. Fully extend your legs, squeezing your quads hard at the top (1-second hold), and slowly resist the weight on the way down.",
+          gif: "https://fitnessprogramer.com/wp-content/uploads/2021/02/LEG-EXTENSION.gif",
+        },
+        {
+          day: "LEG Day 1",
+          name: "Standing/Seated Calf Raises Machine",
+          cue: "Full Stretch and Contraction. Use a full range of motion by lowering your heels as far as possible for a deep stretch, then rising onto your toes for a strong contraction. Pause briefly at the top.",
+          gif: "https://fitnessprogramer.com/wp-content/uploads/2022/04/Standing-Barbell-Calf-Raise.gif",
+        },
+        {
+          day: "LEG Day 1",
+          name: "Bodyweight Squats",
+          cue: "Depth and Control. Stand with feet shoulder-width apart. Lower your body by pushing your hips back and bending your knees. Go as deep as your mobility allows while keeping your chest up and back straight.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/BW_OH_SQT.gif",
+          optional: true,
+        },
+        {
+          day: "LEG Day 1",
+          name: "Barbell/Dumbbell Hip Thrusts",
+          cue: "Drive Through Heels. Position your upper back on a bench and feet flat on the floor. Place a barbell or dumbbell across your hips. Thrust your hips upward by driving through your heels, squeezing your glutes at the top.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/WEI_HIP_THRUST.gif",
+          optional: true,
+        },
 
-            { day: "PULL Day 2", name: "Barbell Rows", cue: "Hinge and Brace. Hinge at the hips until your torso is near parallel to the floor (or slightly higher). Pull the bar towards your belly button or upper abdomen, squeezing your back muscles.", link: "https://www.youtube.com/watch?v=g3uR8k_i1pM" },
-            { day: "PULL Day 2", name: "Single-Arm Dumbbell Rows", cue: "Max Stretch. Support one hand and knee on a bench. Let the dumbbell hang for a full stretch. Pull the dumbbell towards your hip, driving your elbow high and back.", link: "https://www.youtube.com/watch?v=pYcpY20QaE4" },
-            { day: "PULL Day 2", name: "Barbell Curls", cue: "Elbows Pinned. Use a shoulder-width grip. Keep your elbows fixed. Curl the bar up, contracting the biceps fully. Avoid rocking your torso.", link: "https://www.youtube.com/watch?v=JJB8XgKltA8" },
-            { day: "PULL Day 2", name: "Hammer Curls", cue: "Neutral Grip. Hold dumbbells with palms facing your torso. Curl the weights up, focusing on the brachialis and brachioradialis (forearms/outer biceps). Maintain control.", link: "https://www.youtube.com/watch?v=CFBZ4jN1CMI" },
-            { day: "PULL Day 2", name: "Cable Tricep Extensions (Rope)", cue: "Split and Extend. At the bottom of the movement, split the rope apart and hold the contraction for a moment to emphasize the lateral head of the tricep.", link: "https://www.youtube.com/watch?v=QLI40pQ6O74" },
+        // --- DAY 2 ---
+        {
+          day: "PUSH Day 2",
+          name: "Flat Dumbbell Press",
+          cue: "Arch and Retract. Maintain a slight arch in your lower back and keep your shoulder blades squeezed together. Lower the dumbbells until they align with your mid-chest.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/DB_BP.gif",
+        },
+        {
+          day: "PUSH Day 2",
+          name: "Dumbbell Shoulder Press",
+          cue: "Neutral Wrist. Keep your wrists in a neutral position (palms facing each other) to reduce shoulder strain. Press the dumbbells up without locking out your elbows fully.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/SEAT_DB_SHD_PRESS.gif",
+        },
+        {
+          day: "PUSH Day 2",
+          name: "Decline Dumbbell Flyes",
+          cue: "Shoulders Back. Set the bench to a slight decline. Keep a soft bend in your elbows and focus on bringing the dumbbells together in a wide arc, squeezing your lower chest at the top.",
+          gif: "https://media.tenor.com/oJXOnsC72qMAAAAM/crussifixo-no-banco-com-halteres.gif",
+        },
+        {
+          day: "PUSH Day 2",
+          name: "Seated Dumbbell Lateral Raises",
+          cue: 'Eliminate Momentum. Sitting down prevents using your legs or hips. Focus purely on isolating the side delts, following the "pouring water" cue.',
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/DB_REAR_LAT_RAISE.gif",
+        },
+        {
+          day: "PUSH Day 2",
+          name: "Overhead Dumbbell Tricep Extension",
+          cue: "Tuck Elbows. Hold one dumbbell vertically with both hands. Keep your upper arms locked close to your head. Lower the weight behind you for a deep stretch, then extend.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/DB_TRI_EXT.gif",
+        },
+        {
+          day: "PUSH Day 2",
+          name: "Push-Ups",
+          cue: "Full Range of Motion. Keep your body in a straight line from head to heels. Lower your chest all the way to the floor, then push back up, fully extending your arms at the top.",
+          gif: "https://fitnessprogramer.com/wp-content/uploads/2021/06/Push-Up-Plus.gif",
+          optional: true,
+        },
+        {
+          day: "PUSH Day 2",
+          name: "Bench Dips",
+          cue: "Shoulders Down. Keep your shoulders down and back throughout the movement. Lower yourself until your upper arms are parallel to the floor, then press back up, focusing on tricep engagement.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/BENCH_DIPS.gif",
+          optional: true,
+        },
 
-            { day: "LEG Day 2", name: "Romanian Deadlift (RDL)", cue: "Hip Hinge, Straight Back. Keep a slight bend in your knees. Push your hips back as far as possible, keeping the bar close to your shins and your back perfectly straight. Stop when you feel a deep stretch in the hamstrings.", link: "https://www.youtube.com/watch?v=FUwsp0OVyVM" },
-            { day: "LEG Day 2", name: "Seated Calf Raises Machine", cue: "Soleus Focus. This variation focuses on the deeper soleus muscle. Ensure you get a full stretch and peak contraction with a controlled tempo.", link: "https://www.youtube.com/watch?v=_LxQH4o7COk" },
-            { day: "LEG Day 2", name: "Hip Adduction Machine", cue: "Leaning Forward. Sit upright or lean slightly forward for a greater range of motion. Squeeze your inner thighs together, controlling the return movement.", link: "https://www.youtube.com/watch?v=yucB1Zxw6-c" },
-            { day: "LEG Day 2", name: "Hip Abduction Machine", cue: "Lean Back. Sit upright or lean slightly back to target the glutes more effectively. Drive your knees apart, using the outside of your hips.", link: "https://www.youtube.com/watch?v=OjI5OpV6IWA" },
+        {
+          day: "PULL Day 2",
+          name: "Reverse Pec Deck Fly Machine",
+          cue: "Lead with Elbows. Sit facing the machine. Pull the handles back and out, leading with your elbows to target the rear delts. Squeeze your shoulder blades together at the end of the movement.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/REV_PEC_DECK_MC.gif",
+        },
+        {
+          day: "PULL Day 2",
+          name: "Barbell Rows",
+          cue: "Hinge and Brace. Hinge at the hips until your torso is near parallel to the floor (or slightly higher). Pull the bar towards your belly button or upper abdomen, squeezing your back muscles.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/BB_LOW.gif",
+        },
+        {
+          day: "PULL Day 2",
+          name: "Single-Arm Dumbbell Rows",
+          cue: "Max Stretch. Support one hand and knee on a bench. Let the dumbbell hang for a full stretch. Pull the dumbbell towards your hip, driving your elbow high and back.",
+          gif: "https://musclemagfitness.com/wp-content/uploads/dumbbell-one-arm-rear-deltoid-row-exercise.gif",
+        },
+        {
+          day: "PULL Day 2",
+          name: "Barbell Curls",
+          cue: "Elbows Pinned. Use a shoulder-width grip. Keep your elbows fixed. Curl the bar up, contracting the biceps fully. Avoid rocking your torso.",
+          gif: "https://musclemagfitness.com/wp-content/uploads/barbell-reverse-curl-exercise.gif",
+        },
+        {
+          day: "PULL Day 2",
+          name: "Hammer Curls",
+          cue: "Neutral Grip. Hold dumbbells with palms facing your torso. Curl the weights up, focusing on the brachialis and brachioradialis (forearms/outer biceps). Maintain control.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/DB_HAM_CURL.gif",
+        },
+        {
+          day: "PULL Day 2",
+          name: "Forearm Wrist Curls",
+          cue: "Wrist Flexion. Hold a barbell or dumbbell with palms facing up. Curl the weight up, flexing your wrists. Keep your forearms stationary.",
+          gif: "https://cdn.shopify.com/s/files/1/0618/9462/3460/files/DB_WRIST_CURL.gif?v=1745909577",
+        },
+        {
+          day: "PULL Day 2",
+          name: "Assisted Pull-Ups",
+          cue: "Full Range. Use an assisted pull-up machine or resistance bands. Start from a dead hang, pull yourself up until your chin is above the bar, then lower back down fully.",
+          gif: "https://musclemagfitness.com/wp-content/uploads/assisted-pull-up-exercise.gif",
+          optional: true,
+        },
+        {
+          day: "PULL Day 2",
+          name: "Hyperextensions (Back Extensions)",
+          cue: "Controlled Movement. Keep your back straight and hinge at the hips. Lower your torso until you feel a stretch in your hamstrings, then raise back up until your body is in a straight line.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/HPET.gif",
+          optional: true,
+        },
 
-            // --- CORE & ACCESSORIES ---
-            { day: "Core & Accessories", name: "Cable Ab Crunches", cue: "Crunch Down, Not Pull Down. Kneel, holding the rope behind your head. Crunch your ribcage toward your hips, using your abs to pull the weight, not your arms.", link: "https://www.youtube.com/watch?v=3qjoXDTuyOE" },
-            { day: "Core & Accessories", name: "Hanging Leg Raises", cue: "Control the Swing. Use straps if needed. Focus on tilting your pelvis up (posterior pelvic tilt) to engage the abs. Raise legs slowly and avoid swinging the body.", link: "https://www.youtube.com/watch?v=Nw0LOKe3_l8" },
-        ];
+        {
+          day: "LEG Day 2",
+          name: "Romanian Deadlift (RDL)",
+          cue: "Hip Hinge, Straight Back. Keep a slight bend in your knees. Push your hips back as far as possible, keeping the bar close to your shins and your back perfectly straight. Stop when you feel a deep stretch in the hamstrings.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/RM_BB_DL.gif",
+        },
+        {
+          day: "LEG Day 2",
+          name: "Goblet Squats",
+          cue: "Chest Up, Depth Focus. Hold a dumbbell or kettlebell close to your chest. Keep your chest up and back straight as you squat down, pushing your knees out. Go as deep as your mobility allows.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/GOBLET_SQT.gif",
+        },
+        {
+          day: "LEG Day 2",
+          name: "Lunges (Dumbbell or Bodyweight)",
+          cue: "Long Stride. Step forward with a long stride to maximize glute and hamstring engagement. Keep your torso upright and lower your back knee toward the floor without touching it.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/DB_LUNGE.gif",
+        },
+        {
+          day: "LEG Day 2",
+          name: "Standing Cable Hip Adduction / Abduction",
+          cue: "Controlled Movement. For adduction, stand sideways to the cable machine and bring your leg across your body. For abduction, face the machine and lift your leg away from your body. Focus on slow, controlled reps to engage the inner and outer thigh muscles.",
+          gif: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8OUj2KgxbO_WekcCRse-m3jGZ4DlyyyCHvQ&s",
+        },
+        {
+          day: "LEG Day 2",
+          name: "Seated Calf Raises Machine",
+          cue: "Soleus Focus. This variation focuses on the deeper soleus muscle. Ensure you get a full stretch and peak contraction with a controlled tempo.",
+          gif: "https://fitnessprogramer.com/wp-content/uploads/2021/06/Lever-Seated-Calf-Raise.gif",
+        },
+        {
+          day: "LEG Day 2",
+          name: "Sumo Squats",
+          cue: "Wide Stance. Position your feet wider than shoulder-width with toes pointed slightly outward. Keep your chest up and back straight as you squat down, pushing your knees out over your toes. Focus on engaging the inner thighs and glutes.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/DB_SM_SQT.gif",
+          optional: true,
+        },
+        {
+          day: "LEG Day 2",
+          name: "Kettlebell Swings",
+          cue: "Hip Drive. Focus on driving the movement with your hips, not your arms. Keep your core tight and swing the weight to shoulder height, squeezing your glutes at the top.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/KB_SWING.gif",
+          optional: true,
+        },
 
-        const container = document.getElementById('routine-container');
+        // --- CORE & ACCESSORIES ---
+        {
+          day: "Core & Accessories",
+          name: "Plank (Hold)",
+          cue: "Neutral Spine. Keep your body in a straight line from head to heels. Engage your core, glutes, and quads. Avoid letting your hips sag or rise too high.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/PLANK.gif",
+        },
+        {
+          day: "Core & Accessories",
+          name: "Russian Twists",
+          cue: "Controlled Rotation. Sit on the floor with your knees bent and feet slightly elevated. Hold a weight or medicine ball. Rotate your torso side to side, touching the weight to the floor beside you.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/RUS_TWIST.gif",
+        },
+        {
+          day: "Core & Accessories",
+          name: "Cable Ab Crunches",
+          cue: "Crunch Down, Not Pull Down. Kneel, holding the rope behind your head. Crunch your ribcage toward your hips, using your abs to pull the weight, not your arms.",
+          gif: "https://fitnessprogramer.com/wp-content/uploads/2021/09/Standing-Cable-Crunch.gif",
+        },
+        {
+          day: "Core & Accessories",
+          name: "Bicycle Crunches",
+          cue: "Elbow to Opposite Knee. Lie on your back with hands behind your head. Bring opposite elbow to knee while extending the other leg. Keep a steady pace and focus on engaging your obliques.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/ABS_AIR_BIKE.gif",
+        },
+        {
+            day: "Core & Accessories",
+            name: "Mountain Climbers",
+            cue: "Drive Knees, Keep Hips Low. Start in a plank position. Drive one knee toward your chest, then quickly switch legs. Keep your hips low and core engaged throughout the movement.",
+            gif: "https://burnfit.io/wp-content/uploads/2023/11/MOUNT_CLIMB.gif",
+        },
+        {
+          day: "Core & Accessories",
+          name: "Lying Leg Raises",
+          cue: "Controlled Movement. Lie on your back with legs extended. Lift your legs straight up, then lower them back down slowly without letting them touch the floor.",
+          gif: "https://burnfit.io/wp-content/uploads/2023/11/LEG_RAISE.gif",
+        },
+        {
+          day: "Core & Accessories",
+          name: "Dead Bugs",
+          cue: "Slow and Controlled. Lie on your back with arms extended toward the ceiling and knees bent at 90 degrees. Lower opposite arm and leg toward the floor while keeping your lower back pressed into the ground. Return to start and repeat on the other side.",
+          gif: "https://fitnessprogramer.com/wp-content/uploads/2021/05/Dead-Bug.gif",
+        },
+        {
+          day: "Core & Accessories",
+          name: "Hanging Leg Raises",
+          cue: "Control the Swing. Use straps if needed. Focus on tilting your pelvis up (posterior pelvic tilt) to engage the abs. Raise legs slowly and avoid swinging the body.",
+          gif: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Hanging-Knee-Raises.gif",
+        },
+      ];
 
-        // Group exercises by day
-        const routineByDay = exerciseData.reduce((acc, exercise) => {
-            if (!acc[exercise.day]) {
-                acc[exercise.day] = [];
-            }
-            acc[exercise.day].push(exercise);
-            return acc;
-        }, {});
+      const container = document.getElementById("routine-container");
 
-        // Render sections
-        for (const day in routineByDay) {
-            const exercises = routineByDay[day];
-            const sectionId = day.replace(/ /g, '-');
-            
-            const dayHtml = `
-                <div class="mb-6 rounded-xl overflow-hidden shadow-lg bg-gray-800">
-                    <div id="${sectionId}-header" class="section-header p-4 flex justify-between items-center rounded-t-xl" onclick="toggleSection('${sectionId}-content')">
-                        <h2 class="text-xl font-semibold text-green-300">${day} (${exercises.length} Exercises)</h2>
-                        <svg id="${sectionId}-icon" class="w-6 h-6 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+      // Group exercises by day
+      const routineByDay = exerciseData.reduce((acc, exercise) => {
+        if (!acc[exercise.day]) {
+          acc[exercise.day] = [];
+        }
+        acc[exercise.day].push(exercise);
+        return acc;
+      }, {});
+
+      // Render sections
+      for (const day in routineByDay) {
+        const exercises = routineByDay[day];
+        const sectionId = day.replace(/ /g, "-");
+
+        const dayHtml = `
+                <div class="mb-4 card rounded-3 shadow-sm overflow-hidden bg-body-tertiary">
+                    <div id="${sectionId}-header" class="section-header p-3 d-flex justify-content-between align-items-center" onclick="toggleSection('${sectionId}-content')" role="button">
+                        <h2 class="mb-0 fw-semibold" style="color: #58a6ff;">${day} (${
+          exercises.length
+        } Exercises)</h2>
+                        <svg id="${sectionId}-icon" class="transform transition-transform" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="transition: transform 0.2s;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </div>
-                    <div id="${sectionId}-content" class="section-content hidden p-4 space-y-4">
-                        ${exercises.map(ex => `
-                            <div class="exercise-card p-3 rounded-lg shadow-md bg-gray-900">
-                                <h3 class="text-lg font-bold text-gray-50">${ex.name}</h3>
-                                <p class="text-sm italic mt-1 text-gray-400">Cue: ${ex.cue}</p>
-                                <a href="${ex.link}" target="_blank" class="mt-2 inline-flex items-center text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors">
-                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.26a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                    Watch Video Tutorial
-                                </a>
+                    <div id="${sectionId}-content" class="section-content d-none p-3">
+                        ${exercises
+                          .map(
+                            (ex) => `
+                            <div class="card mb-3 border-start border-3" style="background-color: ${
+                              ex.optional ? "#221616" : "#161b22"
+                            };">
+                                <img class="card-img-top img-fluid loading" src="${
+                                  ex.gif
+                                }" alt="${ex.name} demo" onload="this.classList.remove('loading')">
+                                <div class="card-body p-3">
+                                    <h5 class="card-title fw-bold">${ex.name}${
+                              ex.optional ? " *" : ""
+                            }</h5>
+                                    <p class="card-text small fst-italic mb-3">Cue: ${
+                                      ex.cue
+                                    }</p>
+                                </div>
                             </div>
-                        `).join('')}
+                        `
+                          )
+                          .join("")}
                     </div>
                 </div>
             `;
-            container.innerHTML += dayHtml;
-        }
+        container.innerHTML += dayHtml;
+      }
 
-        // Toggle function for collapsible sections
-        function toggleSection(contentId) {
-            const content = document.getElementById(contentId);
-            const iconId = contentId.replace('-content', '-icon');
-            const icon = document.getElementById(iconId);
+      // Toggle function for collapsible sections
+      function toggleSection(contentId) {
+        const content = document.getElementById(contentId);
+        const iconId = contentId.replace("-content", "-icon");
+        const icon = document.getElementById(iconId);
 
-            if (content.classList.contains('hidden')) {
-                content.classList.remove('hidden');
-                icon.classList.add('rotate-180');
-            } else {
-                content.classList.add('hidden');
-                icon.classList.remove('rotate-180');
-            }
+        if (content.classList.contains("d-none")) {
+          content.classList.remove("d-none");
+          icon.style.transform = "rotate(180deg)";
+        } else {
+          content.classList.add("d-none");
+          icon.style.transform = "rotate(0deg)";
         }
+      }
     </script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
-
-
