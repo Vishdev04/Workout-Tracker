@@ -146,258 +146,588 @@
 
       // Define all exercises, cues, and video links
       const exerciseData = [
+  // ==========================================
+  // SPLIT 1: TRADITIONAL PPL FOCUS
+  // ==========================================
+
   // --- DAY 1: CHEST & TRICEPS ---
   {
     "day": "Day 1: Chest & Triceps",
     "name": "Incline Dumbbell Press",
-    "cue": "Chest Up, Shoulders Back. Press slightly inward and focus on driving up and together. Keep shoulder blades pinned.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_INC_BP.gif"
+    "cue": "Chest Up, Shoulders Back. Press slightly inward and focus on driving the dumbbells up and together. Keep shoulder blades pinned.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_INC_BP.gif",
+    "optional": false
   },
   {
     "day": "Day 1: Chest & Triceps",
     "name": "Flat Dumbbell Press",
     "cue": "Keep feet planted. Bring dumbbells down to chest level with elbows at 45 degrees, then press up over mid-chest.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_BP.gif"
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_BP.gif",
+    "optional": false
   },
   {
     "day": "Day 1: Chest & Triceps",
     "name": "Pec Deck Fly Machine",
-    "cue": "Squeeze your elbows together in front of your chest. Keep a slight bend in the arms and don't let the weights touch.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/PEC_DECK_FLY.gif"
-  },
-  {
-    "day": "Day 1: Chest & Triceps",
-    "name": "Cable Crossover",
-    "cue": "Step forward for stability. Bring handles down and across your body as if hugging a large tree.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/CABLE_CROSSOVER.gif"
+    "cue": "Squeeze your elbows together. Keep a slight bend in the arms and don't let the weights touch to keep tension.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/PEC_DECK_FLY.gif",
+    "optional": false
   },
   {
     "day": "Day 1: Chest & Triceps",
     "name": "Rope Tricep Pushdowns",
     "cue": "Keep elbows pinned to your sides. Flare the rope out at the bottom of the movement to maximize the contraction.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/ROPE_PUSH_DOWN.gif"
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/ROPE_PUSH_DOWN.gif",
+    "optional": false
   },
   {
     "day": "Day 1: Chest & Triceps",
     "name": "Skull Crushers (EZ Bar)",
     "cue": "Lower the bar toward your forehead by bending only at the elbows. Keep upper arms vertical throughout.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/EZ_BAR_SKULL_CRUSHER.gif"
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/EZ_BAR_SKULL_CRUSHER.gif",
+    "optional": false
   },
   {
     "day": "Day 1: Chest & Triceps",
     "name": "Overhead DB Extension",
-    "cue": "Hold one dumbbell with both hands. Lower it behind your head and press upward, keeping elbows close to ears.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_OVERHEAD_EXT.gif"
+    "cue": "Deep stretch behind the head. Press upward, keeping elbows close to ears to target the long head of the tricep.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_OVERHEAD_EXT.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 1: Chest & Triceps",
+    "name": "Cable Crossover (High to Low)",
+    "cue": "Soft Bend. Focus on sweeping your hands inward and together, squeezing your lower/inner chest.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/CROSS_OVER.gif",
+    "optional": true
   },
   {
     "day": "Day 1: Chest & Triceps",
     "name": "Bench Dips",
-    "cue": "Keep your back close to the bench. Lower until elbows are at 90 degrees, then push back up using triceps.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/BENCH_DIPS.gif"
+    "cue": "Keep your back close to the bench. Lower until elbows are at 90 degrees. Good burnout exercise.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/BENCH_DIPS.gif",
+    "optional": true
   },
   {
     "day": "Day 1: Chest & Triceps",
-    "name": "(Reserve) Push-ups",
-    "cue": "Maintain a straight line from head to heels. Go to failure to finish off the chest.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/PUSH_UP.gif"
+    "name": "Push-ups",
+    "cue": "Standard form. Go to failure. Use this as a final chest finisher.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/PUSH_UP.gif",
+    "optional": true
   },
   {
     "day": "Day 1: Chest & Triceps",
-    "name": "(Reserve) Chest Press Machine",
-    "cue": "Focus on the mind-muscle connection. Good for when stabilizers are tired.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/CHEST_PRESS_MCH.gif"
-  },
-  {
-    "day": "Day 1: Chest & Triceps",
-    "name": "Cool Down: Chest & Tri Stretch",
-    "cue": "30s Doorway stretch for chest; 30s overhead reach for triceps. Breathe deeply.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/CHEST_STRETCH.gif"
+    "name": "Diamond Push-ups",
+    "cue": "Hands in diamond shape under chest. Focuses heavily on the inner tricep and chest.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DIAMOND_PUSH_UP.gif",
+    "optional": true
   },
 
   // --- DAY 2: BACK & BICEPS ---
   {
     "day": "Day 2: Back & Biceps",
     "name": "Lat Pulldown (Wide Grip)",
-    "cue": "Pull with your elbows, not your hands. Bring the bar to upper chest and squeeze shoulder blades.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/LAT_PULL_DOWN.gif"
+    "cue": "Pull with your elbows, not your hands. Bring the bar to upper chest and squeeze shoulder blades down.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/LAT_PULL_DOWN.gif",
+    "optional": false
   },
   {
     "day": "Day 2: Back & Biceps",
     "name": "Seated Cable Row",
-    "cue": "Keep back straight. Pull the handle toward your belly button, focusing on the mid-back squeeze.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/SEATED_ROW.gif"
+    "cue": "Keep back straight. Pull the handle toward your belly button, focusing on mid-back thickness.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/SEATED_ROW.gif",
+    "optional": false
   },
   {
     "day": "Day 2: Back & Biceps",
     "name": "One-Arm Dumbbell Row",
     "cue": "Place one hand on a bench for support. Pull the weight to your hip, keeping your elbow tucked.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_ROW.gif"
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_ROW.gif",
+    "optional": false
   },
   {
     "day": "Day 2: Back & Biceps",
     "name": "Straight Arm Pulldown",
-    "cue": "Slightly hinge at hips. Keep arms nearly straight and pull the bar to your thighs using your lats.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/ST_ARM_PULL_DOWN.gif"
+    "cue": "Keep arms nearly straight. Pull the bar to your thighs using your lats. Do not use your triceps.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/ST_ARM_PULL_DOWN.gif",
+    "optional": false
   },
   {
     "day": "Day 2: Back & Biceps",
     "name": "Barbell Bicep Curls",
-    "cue": "Avoid swinging. Keep elbows fixed at your sides and curl the bar toward your shoulders.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/BB_CURL.gif"
+    "cue": "Avoid swinging. Keep elbows fixed at your sides. Squeeze at the top of the movement.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/BB_CURL.gif",
+    "optional": false
   },
   {
     "day": "Day 2: Back & Biceps",
     "name": "Hammer Curls",
-    "cue": "Palms facing each other. This targets the brachialis and forearms for arm thickness.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/HAMMER_CURL.gif"
+    "cue": "Palms facing each other. Targets the brachialis and forearms. Essential for arm thickness.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/HAMMER_CURL.gif",
+    "optional": false
   },
   {
     "day": "Day 2: Back & Biceps",
     "name": "Preacher Curls",
-    "cue": "Lock your triceps onto the pad. This isolates the bicep by removing momentum.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/PREACHER_CURL.gif"
+    "cue": "Lock your triceps onto the pad. This removes momentum and isolates the bicep perfectly.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/PREACHER_CURL.gif",
+    "optional": true
   },
   {
     "day": "Day 2: Back & Biceps",
     "name": "Concentration Curls",
-    "cue": "Sit on bench, elbow against inner thigh. Curl the dumbbell slowly for a peak contraction.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/CONC_CURL.gif"
+    "cue": "Sit on bench, elbow against inner thigh. Slow and controlled squeeze for the bicep peak.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/CONC_CURL.gif",
+    "optional": true
   },
   {
     "day": "Day 2: Back & Biceps",
-    "name": "(Reserve) Face Pulls",
-    "cue": "Pull the rope toward your forehead, pulling the ends apart. Great for rear delts and posture.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/FACE_PULL.gif"
+    "name": "Face Pulls",
+    "cue": "Pull rope toward forehead, pulling ends apart. Excellent for rear delts and upper back posture.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/FACE_PULL.gif",
+    "optional": true
   },
   {
     "day": "Day 2: Back & Biceps",
-    "name": "Cool Down: Back & Bi Stretch",
-    "cue": "30s Dead hang from pull-up bar; 30s cross-body arm stretch. Relax the grip.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/BACK_STRETCH.gif"
+    "name": "Assisted Pull-ups",
+    "cue": "Drive elbows down. Control the descent to stretch the lats fully.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/ASSISTED_PULL_UP.gif",
+    "optional": true
   },
 
   // --- DAY 3: SHOULDERS & ABS ---
   {
     "day": "Day 3: Shoulders & Abs",
     "name": "Seated Dumbbell Shoulder Press",
-    "cue": "Bench at slight incline (one notch back). Press dumbbells up, but don't clink them at the top.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/SEAT_DB_SHD_PRESS.gif"
+    "cue": "Bench at slight incline. Press up over your head without clinking the dumbbells. Control the way down.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/SEAT_DB_SHD_PRESS.gif",
+    "optional": false
   },
   {
     "day": "Day 3: Shoulders & Abs",
     "name": "Lateral Raises",
-    "cue": "Lead with your elbows. Raise to shoulder height with a slight forward tilt (pouring water).",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_LATERAL_RAISE.gif"
-  },
-  {
-    "day": "Day 3: Shoulders & Abs",
-    "name": "Reverse Pec Deck",
-    "cue": "Focus on the rear delts. Keep arms straight and pull back until your arms are in line with your shoulders.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/REV_PEC_DECK.gif"
+    "cue": "Lead with your elbows. Raise to shoulder height. Think 'pouring water' out of the dumbbells.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_LATERAL_RAISE.gif",
+    "optional": false
   },
   {
     "day": "Day 3: Shoulders & Abs",
     "name": "Dumbbell Front Raises",
-    "cue": "Raise dumbbells to eye level. Control the descent to maximize time under tension.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_FRONT_RAISE.gif"
+    "cue": "Raise dumbbells to eye level individually or together. Keep core tight to prevent swinging.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_FRONT_RAISE.gif",
+    "optional": false
   },
   {
     "day": "Day 3: Shoulders & Abs",
     "name": "Hanging Leg Raises",
-    "cue": "Avoid swinging. Use your lower abs to pull your knees or feet toward your chest.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/HANGING_LEG_RAISE.gif"
+    "cue": "Keep shoulders engaged. Use lower abs to lift legs. Minimize swinging with core control.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/HANGING_LEG_RAISE.gif",
+    "optional": false
   },
   {
     "day": "Day 3: Shoulders & Abs",
     "name": "Plank",
-    "cue": "Keep a straight line from head to toe. Engage your glutes and core. Hold for 60s.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/PLANK.gif"
+    "cue": "Maintain a straight line from head to heels. Squeeze glutes and belly button to spine.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/PLANK.gif",
+    "optional": false
   },
   {
     "day": "Day 3: Shoulders & Abs",
     "name": "Russian Twists",
-    "cue": "Rotate your torso from side to side. Keep your feet off the ground for extra difficulty.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/RUSSIAN_TWIST.gif"
+    "cue": "Rotate torso from side to side. Keep feet elevated. Use a medicine ball or weight for difficulty.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/RUSSIAN_TWIST.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 3: Shoulders & Abs",
+    "name": "Dumbbell Shrugs",
+    "cue": "Pull shoulders straight up toward ears. Target the upper traps. Do not roll shoulders.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_SHRUG.gif",
+    "optional": true
+  },
+  {
+    "day": "Day 3: Shoulders & Abs",
+    "name": "Arnold Press",
+    "cue": "Start with palms facing you. Rotate palms outward as you press up. Hits all three delt heads.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/ARNOLD_PRESS.gif",
+    "optional": true
   },
   {
     "day": "Day 3: Shoulders & Abs",
     "name": "Dead Bugs",
-    "cue": "Keep your lower back flat on the floor. Lower opposite arm and leg slowly.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DEAD_BUG.gif"
+    "cue": "Keep lower back flat against floor. Lower opposite arm and leg simultaneously and slowly.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DEAD_BUG.gif",
+    "optional": true
   },
   {
     "day": "Day 3: Shoulders & Abs",
-    "name": "(Reserve) Dumbbell Shrugs",
-    "cue": "Pull your shoulders straight up toward your ears. Hold for a second at the top.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_SHRUG.gif"
-  },
-  {
-    "day": "Day 3: Shoulders & Abs",
-    "name": "Cool Down: Shoulder & Core Stretch",
-    "cue": "30s Cobra stretch for abs; 30s child's pose for lower back and shoulders.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/COBRA_STRETCH.gif"
+    "name": "Ab Wheel Rollouts",
+    "cue": "Roll forward while keeping core tight and back rounded. Do not let your lower back arch.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/AB_ROLL_OUT.gif",
+    "optional": true
   },
 
-  // --- DAY 4: LEGS ---
+  // --- DAY 4: LEGS (QUAD FOCUS) ---
   {
-    "day": "Day 4: Legs",
+    "day": "Day 4: Legs (Quad Focus)",
     "name": "Hack Squat Machine",
-    "cue": "Feet shoulder-width apart. Lower until thighs are parallel to the platform, then drive through heels.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/HACK_SQUAT.gif"
+    "cue": "Feet shoulder-width. Lower until thighs are parallel. Drive through the heels to the top.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/HACK_SQUAT.gif",
+    "optional": false
   },
   {
-    "day": "Day 4: Legs",
-    "name": "Romanian Deadlift (RDL)",
-    "cue": "Hinge at the hips. Keep dumbbells close to legs and lower until you feel a deep hamstring stretch.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_RDL.gif"
+    "day": "Day 4: Legs (Quad Focus)",
+    "name": "Leg Press Machine",
+    "cue": "Place feet mid-platform. Lower until knees are at 90 degrees. Do not lock out knees at top.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/LEG_PRESS.gif",
+    "optional": false
   },
   {
-    "day": "Day 4: Legs",
+    "day": "Day 4: Legs (Quad Focus)",
     "name": "Leg Extension Machine",
-    "cue": "Point toes up. Squeeze your quads hard at the top of the movement.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/LEG_EXT.gif"
+    "cue": "Control the weight on the way down. Squeeze quads hard for 1 second at the top.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/LEG_EXT.gif",
+    "optional": false
   },
   {
-    "day": "Day 4: Legs",
-    "name": "Lying Leg Curls",
-    "cue": "Keep your hips pressed into the pad. Curl the weight toward your glutes and control the return.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/LYING_LEG_CURL.gif"
+    "day": "Day 4: Legs (Quad Focus)",
+    "name": "Lying Hamstring Curl",
+    "cue": "Keep hips pressed into the pad. Curl legs toward glutes. Essential for knee stability.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/LYING_LEG_CURL.gif",
+    "optional": false
   },
   {
-    "day": "Day 4: Legs",
+    "day": "Day 4: Legs (Quad Focus)",
     "name": "Standing Calf Raises",
-    "cue": "Get a full stretch at the bottom and a hard squeeze at the top. Pause briefly at both ends.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/ST_CALF_RAISE.gif"
+    "cue": "Full stretch at the bottom. Hold the squeeze at the top. Use a slow tempo.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/ST_CALF_RAISE.gif",
+    "optional": false
   },
   {
-    "day": "Day 4: Legs",
+    "day": "Day 4: Legs (Quad Focus)",
     "name": "Seated Calf Raises",
-    "cue": "Targets the soleus muscle. Keep the movement slow and deliberate.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/SEATED_CALF_RAISE.gif"
+    "cue": "Targets the lower calf (soleus). Keep knees at 90 degrees. Slow and deliberate reps.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/SEATED_CALF_RAISE.gif",
+    "optional": false
   },
   {
-    "day": "Day 4: Legs",
+    "day": "Day 4: Legs (Quad Focus)",
+    "name": "Goblet Squat",
+    "cue": "Hold DB at chest height. Keep back flat and elbows inside knees at the bottom.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_GOBLET_SQUAT.gif",
+    "optional": true
+  },
+  {
+    "day": "Day 4: Legs (Quad Focus)",
+    "name": "Hip Adduction (Inner Thigh)",
+    "cue": "Squeeze legs together smoothly. Strengthens the muscles that stabilize the knee.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/HIP_ADDUCTION.gif",
+    "optional": true
+  },
+  {
+    "day": "Day 4: Legs (Quad Focus)",
+    "name": "Hip Abduction (Outer Hip)",
+    "cue": "Push legs apart. Targets the glute medius and improves hip health.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/HIP_ABDUCTION.gif",
+    "optional": true
+  },
+  {
+    "day": "Day 4: Legs (Quad Focus)",
+    "name": "Bodyweight Squat (Burnout)",
+    "cue": "High reps (50+) at the end of the workout to maximize metabolic stress.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/BODY_WEIGHT_SQUAT.gif",
+    "optional": true
+  },
+
+  // ==========================================
+  // SPLIT 2: SPECIALIZATION & HINGE FOCUS
+  // ==========================================
+
+  // --- DAY 5: CHEST & SHOULDERS ---
+  {
+    "day": "Day 5: Chest & Shoulders",
+    "name": "Flat Dumbbell Press",
+    "cue": "Go heavy. Focus on explosive power on the way up and control on the way down.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_BP.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 5: Chest & Shoulders",
+    "name": "Machine Shoulder Press",
+    "cue": "Fixed path allows for heavier loading. Drive up and keep your back pressed into the seat.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/SHD_PRESS_MCH.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 5: Chest & Shoulders",
+    "name": "Incline Dumbbell Press",
+    "cue": "Upper chest focus. Keep elbows tucked slightly to protect the shoulder joint.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_INC_BP.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 5: Chest & Shoulders",
+    "name": "Seated Lateral Raises",
+    "cue": "Seated prevents using momentum. Lead with elbows to maximize side delt growth.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/SEAT_DB_LAT_RAISE.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 5: Chest & Shoulders",
+    "name": "Cable Crossover (High to Low)",
+    "cue": "Inner/Lower chest focus. Constant tension throughout the movement.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/CROSS_OVER.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 5: Chest & Shoulders",
+    "name": "DB Front Raises",
+    "cue": "Targets the front deltoids. Avoid rocking the body to lift the weight.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_FRONT_RAISE.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 5: Chest & Shoulders",
+    "name": "Arnold Press",
+    "cue": "Rotation hits all three heads. Good for shoulder stability and mass.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/ARNOLD_PRESS.gif",
+    "optional": true
+  },
+  {
+    "day": "Day 5: Chest & Shoulders",
+    "name": "Pec Deck Fly",
+    "cue": "Isolates the chest. Use high reps (12-15) for a deep pump.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/PEC_DECK_FLY.gif",
+    "optional": true
+  },
+  {
+    "day": "Day 5: Chest & Shoulders",
+    "name": "Upright Rows (Cable)",
+    "cue": "Keep the bar/handle close to your body. Pull to mid-chest. Hits traps and side delts.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/UPRIGHT_ROW.gif",
+    "optional": true
+  },
+  {
+    "day": "Day 5: Chest & Shoulders",
+    "name": "Close-Grip Push-ups",
+    "cue": "Hands close together. Hits inner chest and triceps simultaneously.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/CLOSE_GRIP_PUSH_UP.gif",
+    "optional": true
+  },
+
+  // --- DAY 6: BACK (PURE BACK FOCUS) ---
+  {
+    "day": "Day 6: Back",
+    "name": "Barbell Rows",
+    "cue": "Keep back flat and hinge at 45 degrees. Pull the bar to your lower ribs for thickness.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/BB_ROW.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 6: Back",
+    "name": "Lat Pulldown (Neutral Grip)",
+    "cue": "Palms face each other. This hits the lats from a different angle and is easier on shoulders.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/LAT_PULL_DOWN_NEUTRAL.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 6: Back",
+    "name": "One-Arm DB Row",
+    "cue": "Pull the dumbbell toward your hip. Maintain a flat back throughout.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_ROW.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 6: Back",
+    "name": "Reverse Pec Deck Fly",
+    "cue": "Rear Delt Focus. Pull back with elbows slightly high to hit the back of the shoulder.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/REV_PEC_DECK.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 6: Back",
+    "name": "Assisted Pull-ups",
+    "cue": "Focus on the mind-muscle connection. Squeeze your lats at the top of every rep.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/ASSISTED_PULL_UP.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 6: Back",
+    "name": "Face Pulls",
+    "cue": "Essential for rear delt development and rotator cuff health.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/FACE_PULL.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 6: Back",
+    "name": "Straight Arm Pulldown",
+    "cue": "Lats isolation. Keep your chest up and pull with your back, not your arms.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/ST_ARM_PULL_DOWN.gif",
+    "optional": true
+  },
+  {
+    "day": "Day 6: Back",
+    "name": "T-Bar Row",
+    "cue": "Great for mid-back thickness. Keep knees slightly bent and core very tight.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/T_BAR_ROW.gif",
+    "optional": true
+  },
+  {
+    "day": "Day 6: Back",
+    "name": "Dumbbell Shrugs",
+    "cue": "Targets the traps. Use heavy weights for high reps.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_SHRUG.gif",
+    "optional": true
+  },
+  {
+    "day": "Day 6: Back",
+    "name": "Back Hyperextensions",
+    "cue": "Targets the lower back/erectors. Keep a neutral spine and squeeze glutes at the top.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/HYPEREXT.gif",
+    "optional": true
+  },
+
+  // --- DAY 7: ARMS & ABS ---
+  {
+    "day": "Day 7: Arms & Abs",
+    "name": "Barbell Bicep Curls",
+    "cue": "Primary mass builder for biceps. Keep reps strict with no body swing.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/BB_CURL.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 7: Arms & Abs",
+    "name": "Skull Crushers (EZ Bar)",
+    "cue": "Tricep focus. Lower to forehead and explode up. Keep elbows inward.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/EZ_BAR_SKULL_CRUSHER.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 7: Arms & Abs",
+    "name": "Hammer Curls",
+    "cue": "Neutral grip helps build the outer bicep and brachialis.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/HAMMER_CURL.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 7: Arms & Abs",
+    "name": "Rope Tricep Pushdowns",
+    "cue": "High-rep isolation. Squeeze and flare the rope for maximum tricep activation.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/ROPE_PUSH_DOWN.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 7: Arms & Abs",
+    "name": "V-Up Crunches",
+    "cue": "Bring your feet and hands together in a 'V' shape. Targets upper and lower abs simultaneously.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/V_UP.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 7: Arms & Abs",
+    "name": "Dead Bugs",
+    "cue": "Focus on keeping the lower back pressed into the mat. Very effective for deep core stability.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DEAD_BUG.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 7: Arms & Abs",
+    "name": "Preacher Curls",
+    "cue": "Isolates the bicep. Do not fully lock out at the bottom to maintain tension.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/PREACHER_CURL.gif",
+    "optional": true
+  },
+  {
+    "day": "Day 7: Arms & Abs",
+    "name": "Overhead DB Extension",
+    "cue": "Targets the long head of the tricep. Good for adding overall arm size.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_OVERHEAD_EXT.gif",
+    "optional": true
+  },
+  {
+    "day": "Day 7: Arms & Abs",
+    "name": "Wrist Curls",
+    "cue": "Forearm focus. Rest forearms on a bench and curl dumbbells upward with wrists only.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/WRIST_CURL.gif",
+    "optional": true
+  },
+  {
+    "day": "Day 7: Arms & Abs",
+    "name": "Russian Twists",
+    "cue": "Oblique focus. Twist as far as comfortable on each side.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/RUSSIAN_TWIST.gif",
+    "optional": true
+  },
+
+  // --- DAY 8: LEGS (HAM/GLUTE FOCUS) ---
+  {
+    "day": "Day 8: Legs (Ham/Glute)",
+    "name": "Romanian Deadlift (RDL)",
+    "cue": "Hinge at the hips. Keep weights close to legs. Stop at mid-shin or when you feel a deep hamstring stretch.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_RDL.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 8: Legs (Ham/Glute)",
+    "name": "Lying Leg Curl",
+    "cue": "Hamstring isolation. Avoid letting your hips lift off the machine.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/LYING_LEG_CURL.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 8: Legs (Ham/Glute)",
+    "name": "Goblet Squats",
+    "cue": "Hold DB at chest. Focus on depth. Hits the quads while taxing the core/upper back stability.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_GOBLET_SQUAT.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 8: Legs (Ham/Glute)",
+    "name": "Hip Adduction Machine",
+    "cue": "Inner thigh focus. Squeeze the pads together with control.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/HIP_ADDUCTION.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 8: Legs (Ham/Glute)",
+    "name": "Hip Abduction Machine",
+    "cue": "Outer hip and glute focus. Push the pads outward and hold for 1 second.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/HIP_ABDUCTION.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 8: Legs (Ham/Glute)",
+    "name": "Walking Lunges",
+    "cue": "Step forward and lower your back knee toward the floor. Targets glutes and improves balance.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/WALKING_LUNGES.gif",
+    "optional": false
+  },
+  {
+    "day": "Day 8: Legs (Ham/Glute)",
+    "name": "Seated Calf Raises",
+    "cue": "Targets the lower calf. Essential for complete calf development.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/SEATED_CALF_RAISE.gif",
+    "optional": true
+  },
+  {
+    "day": "Day 8: Legs (Ham/Glute)",
     "name": "Glute Bridges",
-    "cue": "Drive through your heels to lift your hips. Squeeze glutes at the top.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/GLUTE_BRIDGE.gif"
+    "cue": "Drive through heels. Squeeze glutes at the top. Great for finishing the glute muscles.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/GLUTE_BRIDGE.gif",
+    "optional": true
   },
   {
-    "day": "Day 4: Legs",
-    "name": "Wall Sit",
-    "cue": "Keep back flat against the wall and knees at 90 degrees. Hold for as long as possible.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/WALL_SIT.gif"
+    "day": "Day 8: Legs (Ham/Glute)",
+    "name": "Wall Sit (Hold)",
+    "cue": "Isometric hold. Great for mental toughness and quad endurance at the end of a workout.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/WALL_SIT.gif",
+    "optional": true
   },
   {
-    "day": "Day 4: Legs",
-    "name": "(Reserve) Goblet Squat",
-    "cue": "Hold dumbbell at chest height. Keep elbows inside knees at the bottom of the squat.",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/DB_GOBLET_SQUAT.gif"
-  },
-  {
-    "day": "Day 4: Legs",
-    "name": "Cool Down: Full Leg Stretch",
-    "cue": "30s Couch stretch for quads; 30s seated hamstring reach. Prevent the stairs from being too hard!",
-    "gif": "https://burnfit.io/wp-content/uploads/2023/11/QUAD_STRETCH.gif"
+    "day": "Day 8: Legs (Ham/Glute)",
+    "name": "Step-ups",
+    "cue": "Step onto a bench or box. Focus on pushing through the heel of the elevated leg.",
+    "gif": "https://burnfit.io/wp-content/uploads/2023/11/STEP_UP.gif",
+    "optional": true
   }
 ];
 
